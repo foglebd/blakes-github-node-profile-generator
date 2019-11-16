@@ -8,7 +8,7 @@ inquirer
     name: "username"
     })
     .then(function ({ username }) {
-        const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+        const queryUrl = `https://api.github.com/users/${username}/profile?per_page=100`;
 
         axios.get(queryUrl).then(function (res) {
             const repoNames = res.data.map(function (repo) {
@@ -17,7 +17,7 @@ inquirer
 
             const repoNamesStr = repoNames.join("\n");
 
-            fs.writeFile("repos.txt", repoNamesStr, function (err) {
+            fs.writeFile("profile.pdf", repoNamesStr, function (err) {
                 if (err) {
                     throw err;
                 }
@@ -38,4 +38,3 @@ function writeToFile(fileName, data) {
 function init() {
 
 init();
-
